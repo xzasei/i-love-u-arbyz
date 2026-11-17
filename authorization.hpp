@@ -3,10 +3,13 @@
 
 #include "ServiceFunction.hpp"
 #include "account.hpp"
+#include "storage.hpp"
 
 void Start();
 bool Login();
-
+void SuperAdminMenu();
+void AdminMenu();
+void UserMenu();
 
 
 

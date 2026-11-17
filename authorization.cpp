@@ -6,7 +6,22 @@ void Start()
 	{
 		if (Login())
 		{
+			if (currentStatus == L"Superadmin")
+			{
 
+			}
+			else if (currentStatus == L"Admin")
+			{
+				//todo
+			}
+			else if (currentStatus == L"user")
+			{
+				// todo
+			}
+			else
+			{
+				std::wcout << L"\n\n_CURRENT_STATUS_LOGIN_ERROR_\n\n";
+			}
 		}
 		else
 		{
@@ -27,7 +42,7 @@ bool Login()
 		std::wcout << L"\n\n\tДобро пожаловать в";
 		std::wcout << L"\n\n\t    Watermelon\n\n";
 		std::wcout << L"\n\nВвод логин или \"exit\" для выхода\n\n";
-		std::wcout << L"Вводите логин: ";
+		std::wcout << L"Введите логин: ";
 		Getline(login);
 
 		if (login == L"exit" || login == L"Exit")
@@ -46,12 +61,78 @@ bool Login()
 					std::wcout << L"Ваш уровень доступа " << statusArr[i] << L"\n";
 					currentId = userIdArr[i];
 					currentStatus = statusArr[i];
-					Sleep(1500);
+					Sleep(2500);
 					return true;
 				}
 			}
 			std::wcout << L"Неверный логин или пароль. Повторите попытку";
 			Sleep(1500);
 		}
+	}
+}
+void SuperAdminMenu()
+{
+	std::wstring choose;
+	while (true)
+	{
+		system("cls");
+		std::wcout << L"1 - Начать продажу\n";
+		std::wcout << L"2 - Показывать товары\n";
+		std::wcout << L"3 - Пополнить товары\n";
+		std::wcout << L"4 - Списать товары\n";
+		std::wcout << L"5 - Изменить цены товаров\n";
+		std::wcout << L"6 - Редактировать товары\n";
+		std::wcout << L"7 - Редактировать пользователей\n";
+		std::wcout << L"8 - Показать прибыль\n";
+		std::wcout << L"0 - Выход из учетной записи";
+		std::wcout << L"Ввод: \n";
+		Getline(choose);
+		 
+		if (choose == L"1")
+		{
+
+		}
+		else if (choose == L"2")
+		{
+
+		}
+		else if (choose == L"3")
+		{
+
+		}
+		else if (choose == L"4")
+		{
+
+		}
+		else if (choose == L"5")
+		{
+
+		}
+		else if (choose == L"6")
+		{
+
+		}
+		else if (choose == L"7")
+		{
+
+		}
+		else if (choose == L"8")
+		{
+
+		}
+		else if (choose == L"9")
+		{
+
+		}
+		else if (choose == L"0")
+		{
+
+		}
+		else
+		{
+			Err();
+		}
+
+
 	}
 }
