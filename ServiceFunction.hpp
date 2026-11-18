@@ -6,6 +6,9 @@
 #include <iomanip>
 
 void Getline(std::wstring& str, wchar_t ch = L'\n');
+bool Isnumber(const std::wstring& str);
+
+
 
 template <class ArrType>
 void FillArray(ArrType* dynamicArr, ArrType* staticArr, size_t commonSize)

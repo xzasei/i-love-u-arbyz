@@ -8,7 +8,8 @@ void Start()
 		{
 			if (currentStatus == L"Superadmin")
 			{
-
+				CreateStorage();
+				SuperAdminMenu();
 			}
 			else if (currentStatus == L"Admin")
 			{
@@ -41,7 +42,7 @@ bool Login()
 		system("cls");
 		std::wcout << L"\n\n\tДобро пожаловать в";
 		std::wcout << L"\n\n\t    Watermelon\n\n";
-		std::wcout << L"\n\nВвод логин или \"exit\" для выхода\n\n";
+		std::wcout << L"\n\nВвод логин или \"exit\" для выхода\n";
 		std::wcout << L"Введите логин: ";
 		Getline(login);
 
@@ -84,8 +85,8 @@ void SuperAdminMenu()
 		std::wcout << L"6 - Редактировать товары\n";
 		std::wcout << L"7 - Редактировать пользователей\n";
 		std::wcout << L"8 - Показать прибыль\n";
-		std::wcout << L"0 - Выход из учетной записи";
-		std::wcout << L"Ввод: \n";
+		std::wcout << L"0 - Выход из учетной записи\n";
+		std::wcout << L"Ввод: ";
 		Getline(choose);
 		 
 		if (choose == L"1")
@@ -94,15 +95,15 @@ void SuperAdminMenu()
 		}
 		else if (choose == L"2")
 		{
-
+			ShowStorage();
 		}
 		else if (choose == L"3")
 		{
-
+			AddProduct();
 		}
 		else if (choose == L"4")
 		{
-
+			removeProduct();
 		}
 		else if (choose == L"5")
 		{

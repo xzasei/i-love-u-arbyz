@@ -11,12 +11,14 @@ extern double* priceArr;
 
 extern bool isStorageCreated;
 
+extern size_t maxStorageSize;
+extern size_t currentStorage;
+extern double maxPrice;
+
 void CreateStorage(int mode = 0);
-
 void ShowStorage(int mode = 0);
-
-
-
-
+void AddProduct();
+void removeProduct();
+void ChangePrice();
 
 #endif // !_STORAGE_HPP_
