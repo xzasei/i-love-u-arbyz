@@ -4,6 +4,7 @@
 #include "ServiceFunction.hpp"
 #include "account.hpp"
 #include "storage.hpp"
+#include "Supplier.hpp"
 
 void Start();
 bool Login();

@@ -85,6 +85,7 @@ void SuperAdminMenu()
 		std::wcout << L"6 - Редактировать товары\n";
 		std::wcout << L"7 - Редактировать пользователей\n";
 		std::wcout << L"8 - Показать прибыль\n";
+		std::wcout << L"9 - Поставщик\n";
 		std::wcout << L"0 - Выход из учетной записи\n";
 		std::wcout << L"Ввод: ";
 		Getline(choose);
@@ -123,7 +124,7 @@ void SuperAdminMenu()
 		}
 		else if (choose == L"9")
 		{
-
+			ShowSupplier();
 		}
 		else if (choose == L"0")
 		{

@@ -1,5 +1,5 @@
 #include "storage.hpp"
-
+#include "Supplier.hpp"
 
 size_t sizeSt = 0;
 size_t* idArr = nullptr;
@@ -129,7 +129,7 @@ void ShowStorage(int mode)
 	
 }
 
-void AddProduct()
+void AddProduct() // спросить фарита правильно ли все
 {
 	std::wstring chooseId, chooseCount, choose;
 
@@ -140,60 +140,61 @@ void AddProduct()
 		Getline(chooseId);
 		if (chooseId == L"exit" || chooseId == L"Exit")
 		{
-			std::wcout << L"Завершение операции пополнения товара\n\n";
-			Sleep(1500);
 			return;
 		}
-		else if (true)
+		if (!Isnumber(chooseId)) continue;
+
+		int id = std::stoi(chooseId) - 1;
+		if (id < 0 || id >(int)sizeSt - 1)
 		{
-			int id = std::stoi(chooseId) - 1;
-			if (id < 0 || id > sizeSt - 1)
+			Err();
+			continue;
+		}
+
+		if (!isSupplierCreated) CreateSupplier();
+		std::wcout << L"У поставщика доступно " << supplierCountArr[id] << L" шт по цене " << supplierPriceArr[id] << L"\n";
+		std::wcout << L"Свободно на складе: " << (maxStorageSize - currentStorage) << L"\n\n";
+
+		std::wcout << L"Введите Кол-во товара для пополнения: ";
+		Getline(chooseCount);
+		if (!Isnumber(chooseCount)) continue;
+
+		size_t count = std::stoi(chooseCount);
+		if (count == 0) { Err(); continue; }
+
+		size_t freeSpace = maxStorageSize - currentStorage;
+		if (count > supplierCountArr[id])
+		{
+			std::wcout << L"У поставщика только " << supplierCountArr[id] << L" шт.\n";
+			Sleep(2000); continue;
+		}
+		if (count > freeSpace)
+		{
+			std::wcout << L"На складе свободно " << freeSpace << L" мест\n";
+			Sleep(2000); continue;
+		}
+
+		while (true)
+		{
+			system("cls");
+			std::wcout << nameArr[id] << L"\nИзменения " << countArr[id] << L" ---> " << countArr[id] + count << L"\n";
+			std::wcout << L"Цена закупки " << supplierPriceArr[id] << L" за шт Итого " << supplierPriceArr[id] * count << L"\n";
+			std::wcout << L"Потвердить?\n1 - Да \t2 - Нет\nВвод: ";
+			Getline(choose);
+
+			if (choose == L"1")
 			{
-				Err();
-			}
-			else
-			{
-				std::wcout << L"Введите Кол-во товара для пополенния: ";
-				Getline(chooseCount);
-				if (Isnumber(chooseCount))
+				if (SellToShop(id, count))
 				{
-					size_t count = std::stoi(chooseCount);
-					if (count < 0 && count > maxStorageSize - currentStorage)
-					{
-						std::wcout << L"Некорректный кол-во на скалед осталось"
-							<< maxStorageSize - currentStorage << L"свободного места";
-						Sleep(1500);
-					}
-					else
-					{
-						while (true)
-						{
-							system("cls");
-							std::wcout << nameArr[id] << L"\nИзменения " << countArr[id] << L" ---> "
-								<< countArr[id] + count << L"\n";
-							std::wcout << L"Потвердить?\n1 - Да \t2 - Нет\nВвод: ";
-							Getline(choose);
-							if (choose == L"1")
-							{
-								std::wcout << L"Товар успешно пополнен\n\n";
-								countArr[id] += count;
-								currentStorage += count;
-								Sleep(1500);
-								break;
-							}
-							if (choose == L"2")
-							{
-								std::wcout << L"Отмена пополнения" << nameArr[id] << L"\n";
-								Sleep(1500);
-								break;
-							}
-							else
-							{
-								Err();
-							}
-						}
-					}
+					countArr[id] += count;
+					currentStorage += count;
+					std::wcout << L"Товар успешно пополнен\n\n";
 				}
+				Sleep(1500); break;
+			}
+			if (choose == L"2")
+			{
+				Sleep(1500); break;
 			}
 		}
 	}
