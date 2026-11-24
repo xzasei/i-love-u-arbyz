@@ -145,10 +145,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ServiceFunction.cpp" />
     <ClCompile Include="storage.cpp" />
+    <ClCompile Include="Supplier.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="account.hpp" />
     <ClInclude Include="authorization.hpp" />
+    <ClInclude Include="Supplier.hpp" />
     <ClInclude Include="Sellings.hpp" />
     <ClInclude Include="ServiceFunction.hpp" />
     <ClInclude Include="storage.hpp" />

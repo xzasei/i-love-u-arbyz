@@ -40,6 +40,15 @@ int main()
 		delete[]priceArr;
 	}
 
+	// спросить фарита правильно ли
+	if (isSupplierCreated)
+	{
+		delete[] supplierIdArr;
+		delete[] supplierNameArr;
+		delete[] supplierCountArr;
+		delete[] supplierPriceArr;
+	}
+
 
 	return 0;
 }
