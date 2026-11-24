@@ -4,10 +4,11 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cwctype>
 
 void Getline(std::wstring& str, wchar_t ch = L'\n');
 bool Isnumber(const std::wstring& str);
-
+bool IsNotname(const std::wstring& str, std::wstring* nameArr, size_t ArrSize);
 
 
 template <class ArrType>
@@ -24,7 +25,18 @@ inline void Err()
 	Sleep(1500);
 }
 
-
+template <class ArrType>
+void ArrPushBack(ArrType*& arr, size_t arrSize)
+{
+	arrSize++;
+	ArrType *temp = new ArrType[arrSize];
+	for (size_t i = 0; i < arrSize - 1; i++)
+	{
+		temp[i] = arr[i];
+	}
+	std::swap(arr, temp);
+	delete[]temp;
+}
 
 
 #endif // !_SERVICE_FUNCTIONS_HPP_
