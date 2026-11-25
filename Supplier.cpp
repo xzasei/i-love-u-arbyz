@@ -1,7 +1,7 @@
 #include "Supplier.hpp"
 
 
-// спросить фарита правильно ли все
+// спросить фарита правильно ли все пофиг что это копирка скаладж
 
 size_t supplierSize = 0;
 size_t* supplierIdArr = nullptr;
@@ -9,6 +9,9 @@ std::wstring* supplierNameArr = nullptr;
 size_t* supplierCountArr = nullptr;
 double* supplierPriceArr = nullptr;
 bool isSupplierCreated = false;
+
+
+
 
 void CreateSupplier()
 {
@@ -18,9 +21,11 @@ void CreateSupplier()
     size_t idStatic[staticSize]{ 1,2,3,4,5,6,7,8,9,10 };
     std::wstring nameStatic[staticSize]
     {
-        L"Крушка виде арбуза", L"Тарелке виде арбуза", L"Миска для питомцов виде арбуза",
-        L"Миски виде арбуза", L"Чашки виде арбуза", L"Вазы виде арбузов",
-        L"Салатницы виде арбуза", L"Чайники виде арбузов", L"горшки виде арбузов", L"Кувшины виде арбузов"
+        L"Крушка виде арбуза", L"Тарелке виде арбуза", 
+        L"Миска для питомцов виде арбуза", L"Миски виде арбуза", 
+        L"Чашки виде арбуза", L"Вазы виде арбузов",
+        L"Салатницы виде арбуза", L"Чайники виде арбузов", 
+        L"горшки виде арбузов", L"Кувшины виде арбузов"
     };
     size_t countStatic[staticSize]{ 500, 500, 500, 500, 500, 500, 500, 500, 500, 500 };
     double priceStatic[staticSize]
@@ -57,18 +62,24 @@ void ShowSupplier(int mode)
     for (size_t i = 0; i < supplierSize; i++)
     {
         std::wcout << supplierIdArr[i] << L"\t" << std::left << std::setw(40)
-            << supplierNameArr[i] << L"\t" << supplierCountArr[i]
-            << L"\t" << supplierPriceArr[i] << L"\n";
+        << supplierNameArr[i] << L"\t" << supplierCountArr[i]
+        << L"\t" << supplierPriceArr[i] << L"\n";
     }
-    std::wcout << L"\n\n";
+
+    std::wcout << L"\n";
     system("pause");
 }
 
 bool SellToShop(size_t id, size_t count)
 {
-    if (!isSupplierCreated) CreateSupplier();
-    if (id >= supplierSize || count == 0 || count > supplierCountArr[id]) 
-return false;
+    if (!isSupplierCreated)
+    {
+        CreateSupplier();
+    }
+    else if (id >= supplierSize || count == 0 || count > supplierCountArr[id])
+    {
+        return false;
+    }
     supplierCountArr[id] -= count;
     return true;
 }

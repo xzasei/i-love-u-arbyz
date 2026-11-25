@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <cwctype>
+#include <unordered_set>
 
 void Getline(std::wstring& str, wchar_t ch = L'\n');
 bool Isnumber(const std::wstring& str);
@@ -37,6 +38,24 @@ void ArrPushBack(ArrType*& arr, size_t arrSize)
 	std::swap(arr, temp);
 	delete[]temp;
 }
+
+template <class ArrType>
+void ArrDeleteByIndex(ArrType*& arr, size_t ArrSize, size_t index)
+{
+	ArrSize--;
+	ArrType* temp = new ArrType[ArrSize];
+	for (size_t i = 0, j = 0; i < ArrSize; i++, j++)
+	{
+		if (j == index)
+		{
+			j++;
+		}
+		temp[i] = arr[j];
+	}
+	std::swap(arr, temp);
+	delete[]temp;
+}
+
 
 
 #endif // !_SERVICE_FUNCTIONS_HPP_
